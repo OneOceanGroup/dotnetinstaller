@@ -24,6 +24,10 @@
 #define _WIN32_MSI 110
 #endif
 
+#ifndef _WIN32_DCOM
+#define _WIN32_DCOM
+#endif
+
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
 
 #define _AFX_ALL_WARNINGS
@@ -59,3 +63,5 @@
 #include <strsafe.h>
 #include <msi.h>
 #include <msiquery.h>
+#include <Wbemidl.h>
+#include <comdef.h>

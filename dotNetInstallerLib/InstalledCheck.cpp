@@ -4,6 +4,7 @@
 #include "InstalledCheckFile.h"
 #include "InstalledCheckDirectory.h"
 #include "InstalledCheckProduct.h"
+#include "InstalledCheckWindowsUpdate.h"
 
 InstalledCheck::InstalledCheck()
 {
@@ -32,7 +33,11 @@ InstalledCheckPtr InstalledCheck::Create(const std::wstring& installedcheck_type
     else if (installedcheck_type == L"check_product")
     {
         return InstalledCheckPtr(new InstalledCheckProduct());
-    }
+	}
+	else if (installedcheck_type == L"check_wus")
+	{
+		return InstalledCheckPtr(new InstalledCheckWindowsUpdate());
+	}
     else
     {
         THROW_EX(L"Invalid installed check type '" << installedcheck_type << L"'");

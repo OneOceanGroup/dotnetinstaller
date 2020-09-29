@@ -98,6 +98,7 @@ namespace InstallerEditor
             else if (item is InstalledCheckRegistry) node = new TreeNodenstalledCheckRegistry(item as InstalledCheckRegistry);
             else if (item is InstalledCheckOperator) node = new TreeNodeInstalledCheckOperator(item as InstalledCheckOperator);
             else if (item is InstalledCheckProduct) node = new TreeNodeInstalledCheckProduct(item as InstalledCheckProduct);
+            else if (item is InstalledCheckWindowsUpdate) node = new TreeNodeInstalledCheckWindowsUpdate(item as InstalledCheckWindowsUpdate);
             else if (item is ControlCheckBox) node = new TreeNodeControlCheckbox(item as ControlCheckBox);
             else if (item is ControlLabel) node = new TreeNodeControlLabel(item as ControlLabel);
             else if (item is ControlEdit) node = new TreeNodeControlEdit(item as ControlEdit);
@@ -521,6 +522,16 @@ namespace InstallerEditor
     public class TreeNodeInstalledCheckProduct : TreeNodeInstalledCheck<InstalledCheckProduct>
     {
         public TreeNodeInstalledCheckProduct(InstalledCheckProduct value)
+            : base(value)
+        {
+            ImageIndex = 11;
+            SelectedImageIndex = 11;
+        }
+    }
+
+    public class TreeNodeInstalledCheckWindowsUpdate : TreeNodeInstalledCheck<InstalledCheckWindowsUpdate>
+    {
+        public TreeNodeInstalledCheckWindowsUpdate(InstalledCheckWindowsUpdate value)
             : base(value)
         {
             ImageIndex = 11;

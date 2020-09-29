@@ -45,6 +45,7 @@ namespace InstallerEditor
         private MenuItem mnAddCommandComponent;
         private MenuItem mnAddInstalledCheckRegistry;
         private MenuItem mnAddInstalledCheckFile;
+        private MenuItem mnAddInstalledCheckWindowsUpdate;
         private MenuItem mnAddDownloadDialog;
         private MenuItem mnSaveAs;
         private MenuItem mnEditWithNotepad;
@@ -166,6 +167,7 @@ namespace InstallerEditor
             this.mnAddInstalledCheckDirectory = new System.Windows.Forms.MenuItem();
             this.mnAddInstalledCheckOperator = new System.Windows.Forms.MenuItem();
             this.mnAddInstalledCheckProduct = new System.Windows.Forms.MenuItem();
+            this.mnAddInstalledCheckWindowsUpdate = new System.Windows.Forms.MenuItem();
             this.menuDownload = new System.Windows.Forms.MenuItem();
             this.mnAddDownloadDialog = new System.Windows.Forms.MenuItem();
             this.mnAddDownloadFile = new System.Windows.Forms.MenuItem();
@@ -178,6 +180,7 @@ namespace InstallerEditor
             this.mnAddCheckboxControl = new System.Windows.Forms.MenuItem();
             this.mnAddBrowseControl = new System.Windows.Forms.MenuItem();
             this.mnAddHyperlinkControl = new System.Windows.Forms.MenuItem();
+            this.mnAddImageControl = new System.Windows.Forms.MenuItem();
             this.menuSep4 = new System.Windows.Forms.MenuItem();
             this.mnAddLicenseAgreement = new System.Windows.Forms.MenuItem();
             this.mnMove = new System.Windows.Forms.MenuItem();
@@ -207,7 +210,7 @@ namespace InstallerEditor
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtComment = new System.Windows.Forms.TextBox();
-            this.mnAddImageControl = new System.Windows.Forms.MenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
             this.mainSplitContainer.SuspendLayout();
@@ -441,7 +444,8 @@ namespace InstallerEditor
             this.mnAddInstalledCheckFile,
             this.mnAddInstalledCheckDirectory,
             this.mnAddInstalledCheckOperator,
-            this.mnAddInstalledCheckProduct});
+            this.mnAddInstalledCheckProduct,
+            this.mnAddInstalledCheckWindowsUpdate});
             this.menuChecks.Text = "Chec&ks";
             // 
             // mnAddInstalledCheckRegistry
@@ -473,6 +477,12 @@ namespace InstallerEditor
             this.mnAddInstalledCheckProduct.Index = 4;
             this.mnAddInstalledCheckProduct.Text = "Installed Check ProductCode";
             this.mnAddInstalledCheckProduct.Click += new System.EventHandler(this.mnAddInstalledCheckProduct_Click);
+            // 
+            // mnAddInstalledCheckWindowsUpdate
+            // 
+            this.mnAddInstalledCheckWindowsUpdate.Index = 5;
+            this.mnAddInstalledCheckWindowsUpdate.Text = "Installed Check Windows Update";
+            this.mnAddInstalledCheckWindowsUpdate.Click += new System.EventHandler(this.mnInstalledCheckWindowsUpdate_Click);
             // 
             // menuDownload
             // 
@@ -557,6 +567,12 @@ namespace InstallerEditor
             this.mnAddHyperlinkControl.Index = 4;
             this.mnAddHyperlinkControl.Text = "&Hyperlink";
             this.mnAddHyperlinkControl.Click += new System.EventHandler(this.mnAddHyperlinkControl_Click);
+            // 
+            // mnAddImageControl
+            // 
+            this.mnAddImageControl.Index = 5;
+            this.mnAddImageControl.Text = "&Image";
+            this.mnAddImageControl.Click += new System.EventHandler(this.mnAddImageControl_Click);
             // 
             // menuSep4
             // 
@@ -773,15 +789,15 @@ namespace InstallerEditor
             this.configurationTree.SelectedImageIndex = 0;
             this.configurationTree.Size = new System.Drawing.Size(176, 278);
             this.configurationTree.TabIndex = 1;
-            this.configurationTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_DragDrop);
-            this.configurationTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
-            this.configurationTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView_MouseDown);
-            this.configurationTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView_DragEnter);
-            this.configurationTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.treeView_KeyUp);
-            this.configurationTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView_BeforeSelect);
-            this.configurationTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeView_KeyDown);
             this.configurationTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
+            this.configurationTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView_BeforeSelect);
+            this.configurationTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
+            this.configurationTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_DragDrop);
+            this.configurationTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView_DragEnter);
             this.configurationTree.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView_DragOver);
+            this.configurationTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeView_KeyDown);
+            this.configurationTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.treeView_KeyUp);
+            this.configurationTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView_MouseDown);
             // 
             // statusStrip
             // 
@@ -810,12 +826,6 @@ namespace InstallerEditor
             this.txtComment.TabIndex = 0;
             this.txtComment.Visible = false;
             // 
-            // mnAddImageControl
-            // 
-            this.mnAddImageControl.Index = 5;
-            this.mnAddImageControl.Text = "&Image";
-            this.mnAddImageControl.Click += new System.EventHandler(this.mnAddImageControl_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -825,11 +835,12 @@ namespace InstallerEditor
             this.Menu = this.mainMenu;
             this.Name = "MainForm";
             this.Text = "Installer Editor";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainSplitContainer.Panel1.ResumeLayout(false);
             this.mainSplitContainer.Panel2.ResumeLayout(false);
             this.mainSplitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
             this.mainSplitContainer.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -1206,6 +1217,7 @@ namespace InstallerEditor
                 mnAddInstalledCheckDirectory.Enabled = (item.Children.CanAdd(typeof(InstalledCheckDirectory)));
                 mnAddInstalledCheckRegistry.Enabled = (item.Children.CanAdd(typeof(InstalledCheckRegistry)));
                 mnAddInstalledCheckProduct.Enabled = (item.Children.CanAdd(typeof(InstalledCheckProduct)));
+                mnAddInstalledCheckWindowsUpdate.Enabled = (item.Children.CanAdd(typeof(InstalledCheckWindowsUpdate)));
                 mnAddInstalledCheckOperator.Enabled = (item.Children.CanAdd(typeof(InstalledCheckOperator)));
                 mnAddComponentWizard2.Enabled = (item is SetupConfiguration);
                 mnMoveUp.Enabled = (configurationTree.SelectedNode.PrevNode != null);
@@ -1236,6 +1248,7 @@ namespace InstallerEditor
                 mnAddInstalledCheckDirectory.Enabled = false;
                 mnAddInstalledCheckRegistry.Enabled = false;
                 mnAddInstalledCheckProduct.Enabled = false;
+                mnAddInstalledCheckWindowsUpdate.Enabled = false;
                 mnAddInstalledCheckOperator.Enabled = false;
                 mnAddComponentWizard2.Enabled = false;
                 mnMove.Enabled = false;
@@ -1310,6 +1323,11 @@ namespace InstallerEditor
         private void mnAddInstalledCheckDirectory_Click(object sender, EventArgs e)
         {
             AddTreeNode_Click<InstalledCheckDirectory>();
+        }
+
+        private void mnInstalledCheckWindowsUpdate_Click(object sender, EventArgs e)
+        {
+            AddTreeNode_Click<InstalledCheckWindowsUpdate>();
         }
 
         private void mnAddLabelControl_Click(object sender, EventArgs e)
@@ -2059,5 +2077,6 @@ namespace InstallerEditor
         }
 
         #endregion
+
     }
 }
