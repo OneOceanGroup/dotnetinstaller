@@ -1,3 +1,20 @@
+3.2.115 (1/15/2022)
+===================
+
+Features
+--------
+
+* [#146](https://github.com/dotnetinstaller/dotnetinstaller/pull/146) - Added support for specific Windows 10 versions, Windows 11, Windows Server 2019, and Windows Server 2022 - [@icnocop](https://github.com/icnocop).
+* [#144](https://github.com/dotnetinstaller/dotnetinstaller/issues/144) - Fix: OSinfo not displaying correctly if server 2016 or 2019 - [@icnocop](https://github.com/icnocop).
+
+3.1.415 (4/15/2021)
+===================
+
+Features
+--------
+
+* [#141](https://github.com/dotnetinstaller/dotnetinstaller/pull/141) - Added support for `v[version]` format for version numbers (with a leading `v` or `V`);  e.g. `v3.1.415` - [@mariusbancila](https://github.com/mariusbancila).
+
 3.0.814 (8/14/2019)
 ===================
 

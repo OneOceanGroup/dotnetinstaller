@@ -3,16 +3,21 @@ dotNetInstaller Setup Bootstrapper
 
 ![dotNetInstaller](https://github.com/dotnetinstaller/dotnetinstaller/raw/master/Documentation/Images/Logo.gif)
 
-dotNetInstaller is a widely used, general-purpose setup bootstrapper for Microsoft Windows XP, 2003, Vista, 2008, 7, 8, 2012, 8.1, 10, 2016, and 2019.
+dotNetInstaller is a widely used, general-purpose setup bootstrapper for Microsoft Windows XP, 2003, Vista, 2008, 7, 8, 2012, 8.1, 10, 2016, 2019, 2022, and 11.
+
+Build Status
+------------
+
+[![Build status](https://github.com/dotnetinstaller/dotnetinstaller/actions/workflows/build.yml/badge.svg?branch=master&event=push)](https://github.com/dotnetinstaller/dotnetinstaller/actions/workflows/build.yml)
 
 Essentials
 ----------
 
 * [Need Help? Google Group](http://groups.google.com/group/dotnetinstaller)
-* Download Version 3.0.814
-  [[installer](https://github.com/dotnetinstaller/dotnetinstaller/releases/download/3.0.814/dotNetInstaller.3.0.814.0.msi)]
-  [[zip](https://github.com/dotnetinstaller/dotnetinstaller/releases/download/3.0.814/dotNetInstaller.3.0.814.0.zip)]
-* [Older Versions on CodePlex](http://dotnetinstaller.codeplex.com/).
+* Download Version 3.2.115
+  [[installer](https://github.com/dotnetinstaller/dotnetinstaller/releases/download/3.2.115/dotNetInstaller.3.2.115.0.msi)]
+  [[zip](https://github.com/dotnetinstaller/dotnetinstaller/releases/download/3.2.115/dotNetInstaller.3.2.115.0.zip)]
+* [Older Versions](https://github.com/dotnetinstaller/dotnetinstaller/releases).
 
 Bootstrapper
 ------------
@@ -50,21 +55,14 @@ dotNetInstaller Components
 This project consists of the following elements: 
 
 * *dotNetInstaller* and *htmlInstaller*: main bootstrapper applications, written in C++. This is the raw setup which presents a GUI in front of the user that displays which components to install depending on which components are already installed on the operating system. The bootstrapper is statically linked with the CRT and has no prerequisites. 
-* *InstallerEditor*: an application for editing configuration files and bootstrapper resources, written in C# for the .NET Framework 2.0. The editor is also capable of importing older versions of dotNetInstaller configuration files and converting them into the current/newer format. 
-* *InstallerLinker*: a command-line bootstrapper linker that can be used in a build process, written in C# for the .NET Framework 2.0. 
+* *InstallerEditor*: an application for editing configuration files and bootstrapper resources, written in C# for the .NET Framework 4.0. The editor is also capable of importing older versions of dotNetInstaller configuration files and converting them into the current/newer format. 
+* *InstallerLinker*: a command-line bootstrapper linker that can be used in a build process, written in C# for the .NET Framework 4.0. 
 Several samples and dependency templates that can be reused as-is and that demonstrate sometimes complex checks which verify whether, for example, MDAC or .NET framework are already installed. 
-
-Build Status
-------------
-
-| Debug | Release |
-| ----- | ------- |
-| [![Build status](https://ci.appveyor.com/api/projects/status/4jptnl22eo25bk87/branch/master?svg=true)](https://ci.appveyor.com/project/icnocop/dotnetinstaller-ixoxv/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/u1eixadj1nrfywo0/branch/master?svg=true)](https://ci.appveyor.com/project/icnocop/dotnetinstaller/branch/master) |
 
 Project History
 ---------------
 
-This project began as a [CodeProject article](http://www.codeproject.com/KB/install/dotNetInstaller.aspx) and was maintained on the [DevAge website](http://www.devage.com/) and [SourceForge](https://sourceforge.net/projects/dotnetinstaller) by [Davide Icardi](https://github.com/davideicardi). It continued its journey through [CodePlex](http://dotnetinstaller.codeplex.com) and is now officially maintained on [Github](https://github.com/dotnetinstaller/dotnetinstaller).
+This project began as a [CodeProject article](http://www.codeproject.com/KB/install/dotNetInstaller.aspx) and was maintained on the [DevAge website](http://www.devage.com/) and [SourceForge](https://sourceforge.net/projects/dotnetinstaller) by [Davide Icardi](https://github.com/davideicardi). It continued its journey through CodePlex and is now officially maintained on [Github](https://github.com/dotnetinstaller/dotnetinstaller).
 
 License and Copyright
 ---------------------
