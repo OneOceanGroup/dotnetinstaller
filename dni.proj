@@ -16,14 +16,15 @@
     <MajorVersion>3</MajorVersion>
     <MinorVersion>2</MinorVersion>
     <RevisionVersion>0</RevisionVersion>
+    <FirstBuildYear>2021</FirstBuildYear>
   </PropertyGroup>
   <PropertyGroup>
     <MSBuild_4_0_ExeFilePath>%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe</MSBuild_4_0_ExeFilePath>
     <NUnitToolPath>ThirdParty\NUnit\bin\net-2.0</NUnitToolPath>
     <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'=='' And Exists('C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
     <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'=='' And Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
-    <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'=='' And Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
-    <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'=='' And Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
+    <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'=='' And Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
+    <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'=='' And Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
     <VsTestConsoleExeFilePath Condition="'$(VsTestConsoleExeFilePath)'==''">C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsoleExeFilePath>
   </PropertyGroup>
   <ItemGroup>
@@ -97,10 +98,11 @@
     <Binaries Include="InstallerEditor\bin\$(Configuration)\InstallerEditor.exe" />
     <Binaries Include="InstallerEditor\bin\$(Configuration)\SourceLibrary.dll" />
     <Binaries Include="InstallerEditor\bin\$(Configuration)\SourceGrid2.dll" />
-    <Binaries Include="ThirdParty\CabLib\$(Configuration)\CabLib.dll" />
+    <Binaries Include="ThirdParty\CabLib\Win32\$(Configuration)\CabLib.dll" />
     <Binaries Include="packages\Vestris.ResourceLib.1.6.422\lib\Vestris.ResourceLib.dll" />
     <Binaries Include="InstallerLinker\bin\$(Configuration)\InstallerLinker.exe" />
     <Binaries Include="InstallerLib\bin\$(Configuration)\InstallerLib.dll" />
+    <Binaries64 Include="ThirdParty\CabLib\x64\$(Configuration)\CabLib.dll" />
   </ItemGroup>
   <ItemGroup>
     <NUnitFiles Include="$(NUnitToolPath)/**/*" />
@@ -135,13 +137,15 @@
     <Exec Command="ThirdParty\NuGet\NuGet.exe restore Dni.sln" />
   </Target>
   <Target Name="build" DependsOnTargets="version;restore">
-    <MSBuild Projects="Dni.sln" Targets="Build" />
+    <MSBuild Projects="Dni.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=Win32" />
+    <MSBuild Projects="Dni.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=x64" />
   </Target>
   <Target Name="release" DependsOnTargets="version">
     <Message Importance="high" Text="Collecting release files ..." />
     <MakeDir Directories="$(ReleaseDir)" />
     <!-- Binaries -->
     <Copy SourceFiles="@(Binaries)" DestinationFolder="$(ReleaseDir)\Bin" />
+    <Copy SourceFiles="@(Binaries64)" DestinationFolder="$(ReleaseDir)\Bin\x64" />
     <!-- Documentation -->
     <Copy SourceFiles="@(Documentation)" DestinationFolder="$(ReleaseDir)\Doc" />
     <!-- Samples -->
@@ -270,7 +274,7 @@ return System.Guid.NewGuid().ToString().ToUpper();
     <Exec Command="&quot;$(ProjectDir)ThirdParty\Microsoft\Visual Studio 8\VC\bin\mt.exe&quot; -manifest UnitTests\InstallerLibUnitTests\nunit-console-x86.exe.$(Configuration).manifest -outputresource:&quot;$(TEMP)\$(NewGuid)\nunit-console-x86.exe&quot;;#1" />
     <NUnit ToolPath="$(TEMP)\$(NewGuid)" Assemblies="UnitTests\InstallerLibUnitTests\bin\$(Configuration)\InstallerLibUnitTests.dll"
     Force32Bit="true" OutputXmlFile="$(ReleaseDir)\UnitTests-%(UIDrivers.FileName).xml" />
-    <DeleteTree Directories="$(TEMP)\$(NewGuid)" />
+    <DeleteTree Directories="$(TEMP)\$(NewGuid)" Retries="5" />
   </Target>
   <Target Name="unittests" DependsOnTargets="version">
     <Message Text="Running %(CppUnitTests.Identity) ..." />
