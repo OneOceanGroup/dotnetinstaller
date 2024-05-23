@@ -32,8 +32,8 @@
           <Component Id="LicenseAgreementSample" Guid="35CF3A16-6311-4c0f-8A86-D58470376293">
             <File Id="LicenseAgreement.Configuration.xml" Name="Configuration.xml" Source="..\Samples\LicenseAgreement\Configuration.xml" />
             <File Id="LicenseAgreement.license.txt" Name="license.txt" Source="..\Samples\LicenseAgreement\license.txt" />
-            <File Id="LicenseAgreementSetup.Setup.exe" Name="Setup.exe" Source="..\Samples\LicenseAgreement\bin\$(var.Configuration)\Setup.exe" />
-            <File Id="LicenseAgreementSetup.HtmlSetup.exe" Name="HtmlSetup.exe" Source="..\Samples\LicenseAgreement\bin\$(var.Configuration)\HtmlSetup.exe" />
+            <File Id="LicenseAgreementSetup.Setup.exe" Name="Setup.exe" Source="..\Samples\LicenseAgreement\bin\$(var.Configuration)\net40\Setup.exe" />
+            <File Id="LicenseAgreementSetup.HtmlSetup.exe" Name="HtmlSetup.exe" Source="..\Samples\LicenseAgreement\bin\$(var.Configuration)\net40\HtmlSetup.exe" />
           </Component>
         </Directory>
         <Directory Id="CustomInputSetupFolder" Name="CustomInputSetup">
@@ -44,6 +44,11 @@
         <Directory Id="InstallCheckProductFolder" Name="InstallCheckProduct">
           <Component Id="InstallCheckProductSample" Guid="1722EA85-8D73-45ca-A38C-F5BCF1E5518F">
             <File Id="InstallCheckProduct.Configuration.xml" Name="Configuration.xml" Source="..\Samples\InstallCheckProduct\Configuration.xml" />
+          </Component>
+        </Directory>
+        <Directory Id="InstallCheckWmiFolder" Name="InstallCheckWmi">
+          <Component Id="InstallCheckWmiSample" Guid="BB194EF6-F31A-4F8C-B0A4-CD27A040E849">
+            <File Id="InstallCheckWmi.Configuration.xml" Name="Configuration.xml" Source="..\Samples\InstallCheckWmi\Configuration.xml" />
           </Component>
         </Directory>
         <Directory Id="ReferenceSetupFolder" Name="ReferenceSetup">
@@ -73,8 +78,8 @@
         <Directory Id="PackagedSetupFolder" Name="PackagedSetup">
           <Directory Id="PackagedSetupPackageFolder" Name="Package">
             <Component Id="PackagedSetupPackage" Guid="D7F09438-C2B0-4C73-8A3C-BC3FB32EFC44">
-              <File Id="Setup.exe" Name="Setup.exe" Source="..\Samples\PackagedSetup\bin\$(var.Configuration)\Setup.exe" />
-              <File Id="HtmlSetup.exe" Name="HtmlSetup.exe" Source="..\Samples\PackagedSetup\bin\$(var.Configuration)\HtmlSetup.exe" />
+              <File Id="Setup.exe" Name="Setup.exe" Source="..\Samples\PackagedSetup\bin\$(var.Configuration)\net40\Setup.exe" />
+              <File Id="HtmlSetup.exe" Name="HtmlSetup.exe" Source="..\Samples\PackagedSetup\bin\$(var.Configuration)\net40\HtmlSetup.exe" />
             </Component>
           </Directory>
           <Directory Id="PackagedSetupSourceFolder" Name="Source">

@@ -1,7 +1,6 @@
 using System;
 using System.Windows.Forms;
 using InstallerLib;
-using System.Text;
 using System.IO;
 
 namespace InstallerEditor
@@ -98,6 +97,7 @@ namespace InstallerEditor
             else if (item is InstalledCheckRegistry) node = new TreeNodenstalledCheckRegistry(item as InstalledCheckRegistry);
             else if (item is InstalledCheckOperator) node = new TreeNodeInstalledCheckOperator(item as InstalledCheckOperator);
             else if (item is InstalledCheckProduct) node = new TreeNodeInstalledCheckProduct(item as InstalledCheckProduct);
+            else if (item is InstalledCheckWmi) node = new TreeNodeInstalledCheckWmi(item as InstalledCheckWmi);
             else if (item is InstalledCheckWindowsUpdate) node = new TreeNodeInstalledCheckWindowsUpdate(item as InstalledCheckWindowsUpdate);
             else if (item is ControlCheckBox) node = new TreeNodeControlCheckbox(item as ControlCheckBox);
             else if (item is ControlLabel) node = new TreeNodeControlLabel(item as ControlLabel);
@@ -556,6 +556,16 @@ namespace InstallerEditor
         {
             ImageIndex = 10;
             SelectedImageIndex = 10;
+        }
+    }
+
+    public class TreeNodeInstalledCheckWmi : TreeNodeInstalledCheck<InstalledCheckWmi>
+    {
+        public TreeNodeInstalledCheckWmi(InstalledCheckWmi value)
+            : base(value)
+        {
+            ImageIndex = 8;
+            SelectedImageIndex = 8;
         }
     }
 

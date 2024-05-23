@@ -81,6 +81,8 @@ namespace InstallerLib
                 l_check = new InstalledCheckRegistry();
             else if (element.Attributes["type"].InnerText == "check_product")
                 l_check = new InstalledCheckProduct();
+            else if (element.Attributes["type"].InnerText == "check_wmi")
+                l_check = new InstalledCheckWmi();
             else if (element.Attributes["type"].InnerText == "check_wus")
                 l_check = new InstalledCheckWindowsUpdate();
             else

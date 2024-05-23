@@ -18,8 +18,8 @@
       <title>Installed Check Types</title>
       <content>
         <para>
-          There are four types of installed checks: <newTerm>check_file</newTerm>, <newTerm>check_directory</newTerm>,
-          <newTerm>check_registry_value</newTerm> and <newTerm>check_product</newTerm>. These can also be added under
+          There are different types of installed checks: <newTerm>check_file</newTerm>, <newTerm>check_directory</newTerm>,
+          <newTerm>check_registry_value</newTerm>, <newTerm>check_product</newTerm>, and <newTerm>check_wmi</newTerm>. These can also be added under
           installed check operators.
         </para>
       </content>
@@ -264,6 +264,26 @@
               It's possible that this check cannot make a decision of whether the component is installed or not per the comparison
               definition. This is true in examples where the product is not installed and the comparison type is <literal>version</literal>.
               In this case the check returns <newTerm>defaultvalue</newTerm>.
+            </para>
+          </content>
+        </section>
+        <section address="checktypeswmi">
+          <title>check_wmi</title>
+          <content>
+            <para>
+              Query the WMI repository with the specified statement.
+              The following properties are available in the check.
+              <definitionTable>
+                <definedTerm>description</definedTerm>
+                <definition>A free-formed description of the check, appears in the logs.</definition>
+                <definedTerm>query</definedTerm>
+                <definition>
+                  The WMI Query Language (WQL) statement to execute.
+                </definition>
+              </definitionTable>
+            </para>
+            <para>
+              The component is determined to be installed if any records are returned as a result of executing the statement.
             </para>
           </content>
         </section>
