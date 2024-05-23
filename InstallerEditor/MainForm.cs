@@ -446,7 +446,7 @@ namespace InstallerEditor
             this.mnAddInstalledCheckDirectory,
             this.mnAddInstalledCheckOperator,
             this.mnAddInstalledCheckProduct,
-            this.mnAddInstalledCheckWmi});
+            this.mnAddInstalledCheckWmi,
             this.mnAddInstalledCheckWindowsUpdate});
             this.menuChecks.Text = "Chec&ks";
             // 
